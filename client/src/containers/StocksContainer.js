@@ -26,10 +26,21 @@ class StocksContainer extends Component {
   }
 }
 
+const filterStocks = (stocks, filter) => {
+  let filteredStocks = {};
+  let regex = new RegExp(filter, 'i');
+  for (let symbol in stocks) {
+    if (regex.exec(symbol)) {
+      filteredStocks[symbol] = stocks[symbol];
+    }
+  }
+  return filteredStocks;
+}
+
 const mapStateToProps = state => {
   console.log(state);
   return {
-    stocks: state.stocks.data,
+    stocks: filterStocks(state.stocks.data, state.stocksFilter),
     isFetching: state.stocks.isFetching,
     selectedDate: Number(state.selectedDate)
   }
