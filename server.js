@@ -38,13 +38,14 @@ app.get('/api/stocks', (req, res, next) => {
     .then(checkStatus)
     .then(response => response.json())
     .then(js => {
-      res.end(JSON.stringify(js, null, 2));
       let stocks = {};
       js.datatable.data.forEach(stock => {
-        stocks[stock[0]] = stocks[stock[0]] || {};
-        stocks[stock[0]][stock[1]] = stock[2]
-      })
+        stocks[stock[0]] = stocks[stock[0]] || [];
+        stocks[stock[0]].push(stock[2]);
+      });
+      res.json(stocks);
     })
+    .catch(next);
 });
 
 app.use((err, req, res, next) => {
