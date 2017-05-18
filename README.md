@@ -1,23 +1,22 @@
 # project_fideligard_spa
 Buy low, sell high.
 
-
 Portfolio is calculated from transactions
 
 State: {
 	transactions: [],
 	stocks: {
-		code1: {
+		code: {
 			name,
-			historical_data: {
-				date1: { eod_price },
-				date2: {}
+			price: {
+				current: #,
+				dayAgo: #,
+				weekAgo: #,
+				monthAgo: #
 			}
 		}
 	}
 }
-
-
 
 API call:
 
