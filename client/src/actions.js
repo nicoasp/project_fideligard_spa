@@ -2,6 +2,7 @@ export const REQUEST_START = 'REQUEST_START';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAILURE = 'REQUEST_FAILURE';
 export const SELECT_DATE = 'SELECT_DATE';
+export const SET_STOCKS_FILTER = 'SET_STOCKS_FILTER';
 
 export function requestStart() {
   return {
@@ -47,6 +48,13 @@ export function getStocks(date) {
 export function selectDate(data) {
   return {
     type: SELECT_DATE,
+    data
+  }
+}
+
+export function setStocksFilter(data) {
+  return {
+    type: SET_STOCKS_FILTER,
     data
   }
 }

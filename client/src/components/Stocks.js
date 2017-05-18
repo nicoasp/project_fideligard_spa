@@ -1,5 +1,6 @@
 import React from "react";
 
+import Input from './elements/Input';
 import Spinner from "./elements/Spinner";
 
 const stocksRow = (symbol, prices) => {
@@ -43,9 +44,12 @@ const stocksContent = stocks => {
   );
 };
 
-const Stocks = ({ stocks, isFetching }) => {
+const Stocks = ({ stocks, isFetching, setStocksFilter }) => {
   return (
     <div>
+      <form>
+        <Input onChange={setStocksFilter} />
+      </form>
       {!Object.keys(stocks).length || isFetching
         ? <Spinner />
         : stocksContent(stocks)}
