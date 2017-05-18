@@ -7,7 +7,7 @@ import {
 import ScrollToTop from './ScrollToTop';
 
 import Navbar from './Navbar';
-import StocksContainer from './containers/StocksContainer';
+import StocksContainer from '../containers/StocksContainer';
 
 const App = () => (
   <div className="container-fluid">

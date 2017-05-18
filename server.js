@@ -28,7 +28,7 @@ const {
 } = require('./lib/dateBuilder');
 
 app.get('/api/stocks', (req, res, next) => {
-  const date = req.query.date || Date.now();
+  const date = Number(req.query.date) || (Date.now() - 24 * 60 * 60 * 1000);
   const dates = dateBuilder(date);
   const datesString = datesStringBuilder(dates);
 
@@ -40,10 +40,24 @@ app.get('/api/stocks', (req, res, next) => {
     .then(js => {
       let stocks = {};
       js.datatable.data.forEach(stock => {
-        stocks[stock[0]] = stocks[stock[0]] || [];
-        stocks[stock[0]].push(stock[2]);
+        stocks[stock[0]] = stocks[stock[0]] || {};
+        switch(stock[1].replace(/-/g, "")) {
+          case dates.current:
+            stocks[stock[0]].current = stock[2];
+            break;
+          case dates.dayAgo:
+            stocks[stock[0]].dayAgo = stock[2];
+            break;
+          case dates.weekAgo:
+            stocks[stock[0]].weekAgo = stock[2];
+            break;
+          case dates.monthAgo:
+            stocks[stock[0]].monthAgo = stock[2];
+            break;
+          default:
+            break;     
+        } 
       });
-      console.log(JSON.stringify(stocks, null, 2));
       res.json(stocks);
     })
     .catch(next);

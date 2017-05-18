@@ -2,13 +2,12 @@ import React from 'react';
 
 import Spinner from './elements/Spinner';
 
-const stocksRow = stock => {
-  console.log(stock);
-  const symbol = Object.keys(stock)[0];
-  const price = stock[symbol][0];
-  const one = stock[symbol][1];
-  const seven = stock[symbol][2];
-  const thirty = stock[symbol][3];
+const stocksRow = (symbol, prices) => {
+  // const symbol = Object.keys(stock)[0];
+  const price = prices.current;
+  const one = Number(prices.current) - Number(prices.dayAgo);
+  const seven = Number(prices.current) - Number(prices.weekAgo);
+  const thirty = Number(prices.current) - Number(prices.monthAgo);
 
   return (
     <tr>
@@ -24,10 +23,7 @@ const stocksRow = stock => {
 const stocksContent = stocks => {
   let stocksRows = [];
   for (let symbol in stocks) {
-    const stock = {
-      [symbol]: stocks[symbol]
-    };
-    stocksRows.push(stocksRow(stock));
+    stocksRows.push(stocksRow(symbol, stocks[symbol]));
   }
 
   return (

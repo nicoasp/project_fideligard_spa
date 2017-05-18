@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import Stocks from '../Stocks';
-import {getStocks} from '../../actions';
+import Stocks from '../components/Stocks';
+import {getStocks} from '../actions';
 
 class StocksContainer extends Component {
 
   componentDidMount() {
-    this.props.getStocks(Date.now());
+    this.props.getStocks(Date.now() - 24 * 60 * 60 * 1000);
   }
 
   render() {
@@ -18,14 +18,21 @@ class StocksContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     stocks: state.data,
     isFetching: state.isFetching
   }
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getStocks: (date) => {
+      dispatch(getStocks(date));
+    }
+  }
+};
+
 export default connect(
   mapStateToProps,
-  {getStocks}
+  mapDispatchToProps
 )(StocksContainer);
