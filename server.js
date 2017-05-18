@@ -28,13 +28,37 @@ const {
 } = require('./lib/dateBuilder');
 
 app.get('/api/stocks', (req, res, next) => {
-  const date = req.query.date;
+  const date = req.query.date || Date.now();
   const dates = dateBuilder(date);
   const datesString = datesStringBuilder(dates);
 
-  fetch(`${baseUrl}?date=${dates}&qopts.columns=ticker,date,close` +
+  fetch(`${baseUrl}?date=${datesString}` +
+        `&qopts.columns=ticker,date,close` +
         `&api_key=${QUANDL_API_KEY}`)
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(js => {
+      res.end(JSON.stringify(js, null, 2));
+      let stocks = {};
+      js.datatable.data.forEach(stock => {
+        stocks[stock[0]] = stocks[stock[0]] || {};
+        stocks[stock[0]][stock[1]] = stock[2]
+      })
+    })
 });
+
+app.use((err, req, res, next) => {
+  console.error(`Error: ${err.stack}`);
+  res.status(err.response ? err.response.status : 500);
+  res.json({ error: err.message });
+});
+
+app.set("port", process.env.PORT || 3001);
+
+app.listen(app.get("port"), () => {
+  console.log(`Server running at http://localhost:${app.get("port")}/`);
+});
+
 
 
 // `https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?

@@ -7,13 +7,10 @@ State: {
 	transactions: [],
 	stocks: {
 		code: {
-			name,
-			price: {
-				current: #,
-				dayAgo: #,
-				weekAgo: #,
-				monthAgo: #
-			}
+			current: #,
+			dayAgo: #,
+			weekAgo: #,
+			monthAgo: #
 		}
 	}
 }
