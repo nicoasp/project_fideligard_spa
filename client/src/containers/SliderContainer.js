@@ -10,7 +10,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    selectDate: (date) => {
+    	dispatch(selectDate(date));
+    }
+  };
+};
+
 export default connect(
   mapStateToProps,
-  {selectDate}
+  mapDispatchToProps
 )(Slider);

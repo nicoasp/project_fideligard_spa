@@ -7,8 +7,17 @@ import {getStocks} from '../actions';
 class StocksContainer extends Component {
 
   componentDidMount() {
-    this.props.getStocks(Date.now() - 24 * 60 * 60 * 1000);
+    console.log("in componentDidMount")
+    this.props.getStocks(this.props.selectedDate);
   }
+
+  componentWillReceiveProps(newProps) {
+    console.log("in componentWillReceiveProps")
+    if (this.props.selectedDate !== newProps.selectedDate) {
+      console.log("inside if, new date: ", new Date(newProps.selectedDate));
+      this.props.getStocks(this.props.selectedDate);
+    }    
+  }  
 
   render() {
     return (
@@ -21,7 +30,8 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     stocks: state.stocks.data,
-    isFetching: state.stocks.isFetching
+    isFetching: state.stocks.isFetching,
+    selectedDate: Number(state.selectedDate),
   }
 };
 

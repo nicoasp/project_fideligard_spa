@@ -1,6 +1,6 @@
 import * as Actions from '../actions';
 
-const initialState = Date.now() - 24 * 60 * 60 * 1000;
+const initialState = Date.now() - 2 * 24 * 60 * 60 * 1000;
 
 export function selectedDate(state = initialState, action) {
   switch (action.type) {

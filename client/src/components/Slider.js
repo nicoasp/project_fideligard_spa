@@ -7,21 +7,22 @@ const dailyMilliseconds = 1000 * 60 * 60 * 24;
 const maxDate = Date.now() - dailyMilliseconds;
 const minDate = maxDate - 31 * dailyMilliseconds;
 
+
+
 const momentize = dateInMs => {
   return moment(new Date(dateInMs)).format('MMM Do YYYY')
 };
 
 const Slider = ({selectedDate, selectDate}) => {
 
-  console.log(momentize(minDate));
   return (
     <div>
       <RCSlider
         min={minDate}
         max={maxDate}
         step={dailyMilliseconds}
-        
-        onAfterChange={selectDate}
+        marks={{[selectedDate]: momentize(selectedDate)}}
+        onChange={selectDate}
       />
     </div>
   );
