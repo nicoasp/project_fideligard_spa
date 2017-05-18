@@ -43,6 +43,7 @@ app.get('/api/stocks', (req, res, next) => {
         stocks[stock[0]] = stocks[stock[0]] || [];
         stocks[stock[0]].push(stock[2]);
       });
+      console.log(JSON.stringify(stocks, null, 2));
       res.json(stocks);
     })
     .catch(next);

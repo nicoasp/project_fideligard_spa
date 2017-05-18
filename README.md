@@ -6,7 +6,11 @@ Portfolio is calculated from transactions
 State: {
 	transactions: [],
 	stocks: {
-		code: [current, dayAgo, weekAgo, monthAgo]
+		data: {
+			code: [current, dayAgo, weekAgo, monthAgo]
+		},
+		isFetching: true,
+		error: null
 	}
 }
 
