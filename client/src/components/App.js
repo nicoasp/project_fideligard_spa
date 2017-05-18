@@ -8,6 +8,7 @@ import ScrollToTop from './ScrollToTop';
 
 import Navbar from './Navbar';
 import StocksContainer from '../containers/StocksContainer';
+import SliderContainer from '../containers/SliderContainer';
 
 const App = () => (
   <div className="container-fluid">
@@ -17,8 +18,8 @@ const App = () => (
         <section className="col-sm-5">
           <StocksContainer />
         </section>
-        <main className="col-sm-7 offset-sm-5">
-
+        <main className="col-sm-7">
+          <SliderContainer />
           <Switch>
 
           </Switch>

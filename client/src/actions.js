@@ -1,6 +1,7 @@
 export const REQUEST_START = 'REQUEST_START';
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 export const REQUEST_FAILURE = 'REQUEST_FAILURE';
+export const SELECT_DATE = 'SELECT_DATE';
 
 export function requestStart() {
   return {
@@ -40,5 +41,12 @@ export function getStocks(date) {
         console.log(error);
         dispatch(requestFailure(error));
       });
+  }
+}
+
+export function selectDate(data) {
+  return {
+    type: SELECT_DATE,
+    data
   }
 }

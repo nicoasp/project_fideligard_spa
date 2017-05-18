@@ -1,21 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import Spinner from './elements/Spinner';
+import Spinner from "./elements/Spinner";
 
 const stocksRow = (symbol, prices) => {
-  // const symbol = Object.keys(stock)[0];
-  const price = prices.current;
-  const one = Number(prices.current) - Number(prices.dayAgo);
-  const seven = Number(prices.current) - Number(prices.weekAgo);
-  const thirty = Number(prices.current) - Number(prices.monthAgo);
+  const current = prices.current;
+  const dayAgo = (prices.current - prices.dayAgo).toFixed(2);
+  const weekAgo = (prices.current - prices.weekAgo).toFixed(2);
+  const monthAgo = (prices.current - prices.monthAgo).toFixed(2);
 
   return (
     <tr>
       <td>{symbol}</td>
-      <td>{price}</td>
-      <td>{one}</td>
-      <td>{seven}</td>
-      <td>{thirty}</td>
+      <td>{current}</td>
+      <td>{dayAgo}</td>
+      <td>{weekAgo}</td>
+      <td>{monthAgo}</td>
     </tr>
   );
 };
@@ -44,12 +43,14 @@ const stocksContent = stocks => {
   );
 };
 
-const Stocks = ({stocks, isFetching}) => (
-  <div>
-    {!Object.keys(stocks).length || isFetching ?
-      <Spinner /> :
-      stocksContent(stocks)}
-  </div>
-);
+const Stocks = ({ stocks, isFetching }) => {
+  return (
+    <div>
+      {!Object.keys(stocks).length || isFetching
+        ? <Spinner />
+        : stocksContent(stocks)}
+    </div>
+  );
+};
 
 export default Stocks;

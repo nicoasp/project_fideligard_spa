@@ -18,21 +18,22 @@ class StocksContainer extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    stocks: state.data,
-    isFetching: state.isFetching
+    stocks: state.stocks.data,
+    isFetching: state.stocks.isFetching
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getStocks: (date) => {
-      dispatch(getStocks(date));
-    }
-  }
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getStocks: (date) => {
+//       dispatch(getStocks(date));
+//     }
+//   }
+// };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {getStocks}
 )(StocksContainer);

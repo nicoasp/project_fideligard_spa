@@ -8,9 +8,9 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
-import {stocks} from './reducers/stocks';
+import fideligard from './reducers';
 
-let store = createStore(stocks, applyMiddleware(thunk));
+let store = createStore(fideligard, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
