@@ -8,3 +8,5 @@ const QUANDL_API_KEY = process.env.QUANDL_API_KEY
 .json?
 api_key=${QUANDL_API_KEY}
 &start_date=2017-05-01&end_date=2017-05-18`
+
+`https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?date=20160912&qopts.columns=ticker,date,close&api_key=${QUANDL_API_KEY}`

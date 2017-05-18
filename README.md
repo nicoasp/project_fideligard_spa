@@ -13,7 +13,7 @@ State: {
 				date1: { eod_price },
 				date2: {}
 			}
-		} 
+		}
 	}
 }
 
@@ -21,4 +21,4 @@ State: {
 
 API call:
 
-`https://www.quandl.com/api/v3/datasets/WIKI/${STOCK_CODE}.json?api_key=${API_KEY}&start_date=2017-05-01&end_date=2017-05-18`
+`https://www.quandl.com/api/v3/datasets/WIKI/${STOCK_CODE}.json?api_key=${QUANDL_API_KEY}&start_date=2017-05-01&end_date=2017-05-18`
